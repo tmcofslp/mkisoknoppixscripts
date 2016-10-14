@@ -6,19 +6,19 @@ PFAD=$(dirname $SCRIPTPATH)
 START=$(date +'%s')
 MINIRTNAME="2.6.24_g_minirt-debug"
 MINIRTGZ="${MINIRTNAME}.gz"
-KMODULESDIR="lib/modules/2.6.24.7-rtai-3.6.1-smp-dbg"
+KERNELVER="2.6.24.7-rtai-3.6.1-smp-dbg"
+KMODULESDIR="lib/modules/$KERNELVER"
 KNSRC="$PFAD/knx/source/KNOPPIX"
 KNKMOD="$KNSRC/$KMODULESDIR"
-rsync -aH /$KMODULESDIR $KNKMOD
 # Disable screensaver
 # Build new inital RAM-disk
-cd $PFAD/knx/minirt/minirtdir/modules
-for i in `ls *.ko`; do find $KNKMOD -name $i -exec cp {} . \; ; done
-cd $PFAD/knx/minirt/minirtdir/
-find . | cpio -oH newc | gzip -9 > ../$MINIRTGZ
-cp $PFAD/knx/minirt/$MINIRTGZ $PFAD/knx/master/boot/
+$PFAD/createminirt.sh
+if [ $? -ne 0 ]; then
+	echo "createminirt.sh failed!" >&2
+	exit -1
+fi
 # Make the big  compressed filesystem KNOPPIX
-cp /boot/vmlinuz /media/sde5/knx/master/boot/atom-6-2.6.24-debug
+cp $KNSRC/boot/vmlinuz-$KERNELVER $PFAD/knx/master/boot/atom-6-2.6.24-debug
 mkisofs -input-charset ISO-8859-15 -R -l -D -V KNOPPIX_FS -quiet \
   -no-split-symlink-components -no-split-symlink-fields \
   -hide-rr-moved -cache-inodes $PFAD/knx/source/KNOPPIX \

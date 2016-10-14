@@ -33,6 +33,6 @@ cp -rp /KNOPPIX/* $PFAD/knx/source/KNOPPIX
 # Additionally, copy the files to build the ISO later
 rsync -aH --exclude="KNOPPIX/KNOPPIX*" $SYSMNT $PFAD/knx/master
 # gunzip inital RAM-disk
-eval $SCRIPTPATH/createminirt.sh
+eval $PFAD/prepminirt.sh
 echo -e "\nFinished! Used time: $(expr $(expr $(date +'%s') - $START) / 60) min. \
   and $(expr $(expr $(date +'%s') - $START) % 60) sec."

@@ -1,0 +1,15 @@
+/kernel/fs/aufs/aufs.ko
+/extras/cloop.ko
+/kernel/drivers/usb/host/ehci-hcd.ko
+/kernel/drivers/input/evdev.ko
+/kernel/drivers/input/ff-memless.ko
+/kernel/drivers/hid/hid.ko
+/kernel/drivers/scsi/initio.ko
+/kernel/drivers/usb/storage/libusual.ko
+/kernel/drivers/block/loop.ko
+/kernel/drivers/usb/host/ohci-hcd.ko
+/kernel/drivers/ssb/ssb.ko
+/kernel/drivers/usb/host/uhci-hcd.ko
+/kernel/drivers/usb/storage/usb-storage.ko
+/kernel/drivers/usb/core/usbcore.ko
+/kernel/drivers/hid/usbhid/usbhid.ko
